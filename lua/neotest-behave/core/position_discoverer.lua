@@ -17,7 +17,7 @@ function PositionsDiscoverer.discover_positions(file_path)
     ) @test.description
   ]]
 
-	return lib.treesitter.parse_positions(file_path, query, {})
+	return lib.treesitter.parse_positions(file_path, query, { nested_tests = true })
 end
 
 return PositionsDiscoverer
