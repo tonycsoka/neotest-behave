@@ -10,11 +10,11 @@ function PositionsDiscoverer.discover_positions(file_path)
 	local query = [[
     (feature
       (name) @namespace.name
+      (scenario
+        (name) @test.name
+      ) @test.description
     ) @namespace.description
 
-    (scenario
-      (name) @test.name
-    ) @test.description
   ]]
 
 	return lib.treesitter.parse_positions(file_path, query, { nested_tests = true })
