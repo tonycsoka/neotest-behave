@@ -12,26 +12,25 @@ function PositionsDiscoverer.discover_positions(file_path)
       (name) @namespace.name
       (scenario
         (name) @test.name
-      ) @test.description
-    ) @namespace.description
-
+      ) @test.definition
+    ) @namespace.definition
   ]]
 
-	print("in here")
-
-	return lib.treesitter.parse_positions(file_path, query, {
+	local opts = {
 		require_namespaces = true,
-		nested_tests = true,
 		position_id = function(position, parents)
 			local prefix = {}
 			for _, namespace in pairs(parents) do
 				table.insert(prefix, namespace.name)
 			end
 			local name = position.name
-			print(position.range)
 			return table.concat(vim.iter({ position.path, prefix, name }):flatten(), "::")
 		end,
-	})
+	}
+
+	local positions = lib.treesitter.parse_positions(file_path, query, opts)
+	print(positions)
+	return positions
 end
 
 return PositionsDiscoverer
