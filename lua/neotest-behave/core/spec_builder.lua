@@ -7,7 +7,6 @@ SpecBuilder = {
 	build_spec = function(args)
 		local tree = args.tree
 		local tree_data = tree:data()
-		local path = tree_data.path
 		local root = root_finder.findRoot(tree_data.path)
 		local results_path = async.fn.tempname()
 		local position = args.tree:data()
