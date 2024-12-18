@@ -8,7 +8,7 @@ RootFinder = {}
 ---@return string | nil @Absolute root dir of test suite
 function RootFinder.findRoot(dir)
 	local matchers = {
-		".git",
+		-- ".git",
 		"features",
 	}
 	for _, matcher in ipairs(matchers) do
