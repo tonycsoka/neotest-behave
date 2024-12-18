@@ -14,7 +14,6 @@ NeotestBehaveAdapter = { name = "neotest-behave" }
 
 function NeotestBehaveAdapter._generate_id(position, ns)
 	local paths = vim.split(position.path, Path.path.sep)
-	-- local id = table.concat(vim.iter({ paths[#paths], prefix, position.name }):flatten(), "::")
 	local id = table.concat(
 		utils.tbl_flatten({
 			paths[#paths],
