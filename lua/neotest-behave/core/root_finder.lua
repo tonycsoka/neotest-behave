@@ -9,7 +9,7 @@ RootFinder = {}
 function RootFinder.findRoot(dir)
 	local matchers = {
 		".git",
-		"features",
+		-- "features",
 	}
 	for _, matcher in ipairs(matchers) do
 		local root = lib.files.match_root_pattern(matcher)(dir)

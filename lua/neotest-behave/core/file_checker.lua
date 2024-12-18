@@ -5,7 +5,7 @@ FileChecker = {}
 ---@return boolean
 function FileChecker.isTestFile(file_path)
 	-- test files end with .feature
-	return file_path:match(".feature$")
+	return vim.endswith(file_path, ".feature")
 end
 
 return FileChecker
