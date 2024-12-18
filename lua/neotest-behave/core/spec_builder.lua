@@ -13,7 +13,7 @@ SpecBuilder = {
 		local commands = {}
 		for _, node in tree:iter_nodes() do
 			local node_data = node:data()
-			if node_data.type == "test" then
+			if node_data.type == "namespace" or node_data.type == "test" then
 				local command = CommandBuilder:new()
 				local symbol = node_data.name
 
