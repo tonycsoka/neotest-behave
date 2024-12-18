@@ -1,5 +1,4 @@
 local root_finder = require("neotest-behave.core.root_finder")
-local CommandBuilder = require("neotest-behave.util.command_builder")
 
 SpecBuilder = {
 	---@param args neotest.RunArgs
@@ -14,19 +13,6 @@ SpecBuilder = {
 		for _, node in tree:iter_nodes() do
 			local node_data = node:data()
 			if node_data.type == "namespace" or node_data.type == "test" then
-				local command = CommandBuilder:new()
-				local symbol = node_data.name
-
-				command:filter(symbol)
-				command:executable("./lib/bashunit")
-				command:path(path)
-
-				-- add command to list of commands
-				commands[#commands + 1] = {
-					command = command:build(),
-					cwd = root,
-					symbol = symbol,
-				}
 			end
 		end
 
