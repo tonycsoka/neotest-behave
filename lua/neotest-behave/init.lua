@@ -5,9 +5,28 @@ local PositionsDiscoverer = require("neotest-behave.core.positions_discoverer")
 local SpecBuilder = require("neotest-behave.core.spec_builder")
 local ResultBuilder = require("neotest-behave.core.result_builder")
 
+local Path = require("plenary.path")
+local utils = require("neotest.utils")
+
 ---@class neotest.Adapter
 ---@field name string
 NeotestBehaveAdapter = { name = "neotest-behave" }
+
+function NeotestBehaveAdapter._generate_id(position, ns)
+	local paths = vim.split(position.path, Path.path.sep)
+	-- local id = table.concat(vim.iter({ paths[#paths], prefix, position.name }):flatten(), "::")
+	local id = table.concat(
+		utils.tbl_flatten({
+			paths[#paths],
+			vim.tbl_map(function(pos)
+				return pos.name
+			end, ns),
+			position.name,
+		}),
+		"::"
+	)
+	return id
+end
 
 ---Find the project root directory given a current directory to work from.
 ---Should no root be found, the adapter can still be used in a non-project context if a test file matches.
