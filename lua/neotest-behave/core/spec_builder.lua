@@ -45,7 +45,6 @@ SpecBuilder = {
 				root = root,
 			},
 		}
-		print("Command: " .. return_result.command)
 		return return_result
 	end,
 }
