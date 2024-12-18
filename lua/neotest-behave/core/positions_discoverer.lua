@@ -11,13 +11,6 @@ function PositionsDiscoverer.discover_positions(file_path)
 	local query = [[
     (feature
       (name) @namespace.name
-      (scenario
-        (name) @test.name
-      ) @test.definition
-    ) @namespace.definition
-
-    (feature
-      (name) @namespace.name
     ) @namespace.definition
 
     (scenario
