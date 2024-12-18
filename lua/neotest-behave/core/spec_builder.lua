@@ -24,6 +24,9 @@ SpecBuilder = {
 		for _, node in tree:iter_nodes() do
 			local node_data = node:data()
 			local id_keys = vim.split(node_data.id, "::")
+			if node_data.type == "dir" then
+				table.insert(commands, node_data.name)
+			end
 			if node_data.type == "file" then
 				table.insert(commands, string.sub(id_keys[1], #root + 2))
 			end

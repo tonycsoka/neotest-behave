@@ -22,7 +22,6 @@ function ResultBuilder.build_results(spec, result, tree)
 
 		local file = vim.split(bdd_json.location, ":")[1]
 		local feature = bdd_json.name
-		local f_status = bdd_json.status
 		for _, element in ipairs(bdd_json.elements) do
 			if element.type == "scenario" then
 				local name = element.name
