@@ -9,7 +9,7 @@ ResultBuilder = {}
 ---@param tree neotest.Tree
 ---@return table<string, neotest.Result>
 function ResultBuilder.build_results(spec, result, tree)
-	local results = {}
+	-- local results = {}
 	local run_res = {}
 
 	local success, lines = pcall(lib.files.read_lines, result.output)
@@ -41,14 +41,14 @@ function ResultBuilder.build_results(spec, result, tree)
 		::continue::
 	end
 
-	for _, node in tree:iter_nodes() do
-		local node_data = node:data()
-		if run_res[node_data.id] ~= nil then
-			results[node_data.id] = run_res[node_data.id]
-		end
-	end
+	-- for _, node in tree:iter_nodes() do
+	-- 	local node_data = node:data()
+	-- 	if run_res[node_data.id] ~= nil then
+	-- 		results[node_data.id] = run_res[node_data.id]
+	-- 	end
+	-- end
 
-	return results
+	return run_res
 end
 
 return ResultBuilder
