@@ -28,6 +28,13 @@ function ResultBuilder.build_results(spec, result, tree)
 				run_res[file .. "::" .. feature .. "::" .. name] = {
 					status = element.status,
 				}
+				if element.status == "failed" then
+					for _, step in ipairs(element.steps) do
+						if step.result ~= nil and step.result.status == "failed" then
+							run_res[file .. "::" .. feature .. "::" .. name].short = step.location
+						end
+					end
+				end
 			end
 		end
 		::continue::
