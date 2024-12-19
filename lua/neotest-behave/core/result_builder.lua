@@ -18,14 +18,16 @@ function ResultBuilder.build_results(spec, result, tree)
 			goto continue
 		end
 		line = string.gsub(line, "^(.-),?$", "%1")
-		local bdd_json = vim.json.decode(line)
+		local ok, bdd_json = pcall(vim.json.decode, line, { luanil = { object = true } })
 
 		local file = vim.split(bdd_json.location, ":")[1]
 		local feature = bdd_json.name
 		for _, element in ipairs(bdd_json.elements) do
 			if element.type == "scenario" then
 				local name = element.name
-				run_res[file .. "::" .. feature .. "::" .. name] = element.status
+				run_res[file .. "::" .. feature .. "::" .. name] = {
+					status = element.status,
+				}
 			end
 		end
 		::continue::
@@ -34,9 +36,7 @@ function ResultBuilder.build_results(spec, result, tree)
 	for _, node in tree:iter_nodes() do
 		local node_data = node:data()
 		if run_res[node_data.id] ~= nil then
-			results[node_data.id] = {
-				status = run_res[node_data.id],
-			}
+			results[node_data.id] = run_res[node_data.id]
 		end
 	end
 
