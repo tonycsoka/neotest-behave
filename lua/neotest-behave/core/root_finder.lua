@@ -8,6 +8,7 @@ RootFinder = {}
 ---@return string | nil @Absolute root dir of test suite
 function RootFinder.findRoot(dir)
 	return lib.files.match_root_pattern(
+		".git",
 		"pyproject.toml",
 		"setup.cfg",
 		"mypy.ini",
