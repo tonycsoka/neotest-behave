@@ -23,7 +23,7 @@ function PositionsDiscoverer.discover_positions(file_path)
 		-- nested_namespaces = true,
 		-- require_namespaces = false,
 		-- nested_tests = true,
-		position_id = "require('neotest-behave')._generate_id",
+		position_id = "require('neotest-behave.utils').generate_id",
 	}
 
 	local positions = lib.treesitter.parse_positions(file_path, query, opts)
