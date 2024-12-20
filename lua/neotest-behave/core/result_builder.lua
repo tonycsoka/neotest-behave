@@ -41,13 +41,6 @@ function ResultBuilder.build_results(spec, result, tree)
 		::continue::
 	end
 
-	-- for _, node in tree:iter_nodes() do
-	-- 	local node_data = node:data()
-	-- 	if run_res[node_data.id] ~= nil then
-	-- 		results[node_data.id] = run_res[node_data.id]
-	-- 	end
-	-- end
-
 	return run_res
 end
 
