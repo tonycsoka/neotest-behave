@@ -2,7 +2,7 @@
 
 A [Behave](https://behave.readthedocs.io/en/latest/), BDD  adapter for [Neotest](https://github.com/nvim-neotest/neotest)
 
-Behave will need to be runnable, with all runtime packages installed, from the directory where your [gherkin](https://cucumber.io/docs/gherkin/) (*.feature) files are
+Behave will need to be runnable, with all runtime packages installed, from the directory where your [gherkin](https://cucumber.io/docs/gherkin/) `*.feature` files are
 
 __Needs https://github.com/tonycsoka/tree-sitter-gherkin installed first__
 
