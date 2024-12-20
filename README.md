@@ -48,3 +48,5 @@ require("neotest").setup({
   },
 })
 ```
+## TODO
+Add in errors to output
