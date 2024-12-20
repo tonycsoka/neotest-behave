@@ -5,13 +5,13 @@ SpecBuilder = {
 	---@param args neotest.RunArgs
 	---@return nil | neotest.RunSpec | neotest.RunSpec[]
 	build_spec = function(args)
-		local tree = args.tree
-		local tree_data = tree:data()
-		local root = root_finder.findRoot(tree_data.path)
 		local results_path = async.fn.tempname()
 		local position = args.tree:data()
+		local root = root_finder.findRoot(position.path)
 
-		local commands = {
+		local commands = {}
+
+		local command = {
 			"cd",
 			root,
 			"&&",
@@ -21,33 +21,30 @@ SpecBuilder = {
 			"--no-summary",
 		}
 
-		for _, node in tree:iter_nodes() do
-			local node_data = node:data()
-			local id_keys = vim.split(node_data.id, "::")
-			if node_data.type == "dir" then
-				table.insert(commands, node_data.name)
-			end
-			if node_data.type == "file" then
-				table.insert(commands, string.sub(id_keys[1], #root + 2))
-			end
-			if node_data.type == "namespace" or node_data.type == "test" then
-				table.insert(commands, id_keys[1])
-			end
-			if node_data.type == "test" then
-				table.insert(commands, "-n '" .. node_data.name .. "'")
-			end
-			break
+		local node_data = position
+		local id_keys = vim.split(node_data.id, "::")
+		if node_data.type == "dir" then
+			return
+		end
+		if node_data.type == "file" then
+			table.insert(command, string.sub(id_keys[1], #root + 2))
+		end
+		if node_data.type == "namespace" or node_data.type == "test" then
+			table.insert(command, id_keys[1])
+		end
+		if node_data.type == "test" then
+			table.insert(command, "-n '" .. node_data.name .. "'")
 		end
 
-		local return_result = {
-			command = table.concat(commands, " "),
+		table.insert(commands, {
+			command = table.concat(command, " "),
 			context = {
 				results_path = results_path,
 				file = position.path,
 				root = root,
 			},
-		}
-		return return_result
+		})
+		return commands
 	end,
 }
 
