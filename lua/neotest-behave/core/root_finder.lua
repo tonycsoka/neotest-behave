@@ -7,19 +7,15 @@ RootFinder = {}
 ---@param dir string @Directory to treat as cwd
 ---@return string | nil @Absolute root dir of test suite
 function RootFinder.findRoot(dir)
-	local matchers = {
-		-- ".git",
-		"features",
-		"*.features",
-	}
-	for _, matcher in ipairs(matchers) do
-		local root = lib.files.match_root_pattern(matcher)(dir)
-		if root then
-			return root
-		end
-	end
-
-	return nil
+	return lib.files.match_root_pattern(
+		"pyproject.toml",
+		"setup.cfg",
+		"mypy.ini",
+		"pytest.ini",
+		"setup.py",
+		"features/",
+		"*.features/"
+	)(dir)
 end
 
 return RootFinder
