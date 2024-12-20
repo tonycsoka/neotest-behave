@@ -14,6 +14,8 @@ function RootFinder.findRoot(dir)
 		"mypy.ini",
 		"pytest.ini",
 		"setup.py",
+		".behaverc",
+		"behave.ini",
 		"features/",
 		"*.features/"
 	)(dir)
