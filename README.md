@@ -6,7 +6,7 @@ Behave will need to be runnable, with all runtime packages installed, from the d
 
 __Needs https://github.com/tonycsoka/tree-sitter-gherkin installed first__
 
-Soemting like this in your treesiter config will do
+Someting like this in your treesiter config will do (note that filetype is `cucumber`, but the parser is for the `gherkin` syntax)
 
 ```lua
 parser_config.gherkin = {
