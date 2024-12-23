@@ -28,10 +28,10 @@ For instance, add this to your package manager (Lazy in this case)
 
 ```lua
 {
-  "tonycsoka/neotest-behave",
-  dependencies = {
-    "nvim-neotest/neotest",
-  },
+    "tonycsoka/neotest-behave",
+    dependencies = {
+        "nvim-neotest/neotest",
+    },
 }
 ```
 
@@ -39,13 +39,13 @@ Then add `neotest-behave` to the neotest setup, i.e.
 
 ```lua
 require("neotest").setup({
-  adapters = {
-    require("neotest-behave"),
-    ...
-  },
-  summary = {
-    open = "botright vsplit | vertical resize 30",
-  },
+    adapters = {
+        require("neotest-behave"),
+        ...
+    },
+    summary = {
+        open = "botright vsplit | vertical resize 30",
+    },
 })
 ```
 ## TODO
